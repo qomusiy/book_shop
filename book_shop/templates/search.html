@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+</head>
+<body>
+    <h1>Search</h1>
+    <form>
+        <input type="text" name="t" placeholder="Search">
+        <button type="submit">Qidirish</button>
+    </form>
+
+{% if books %}
+<h1>Topilgan:</h1>
+    {% for b in books %}
+        {{ b.title }}
+        <br>
+    {% endfor %}
+{% else %}
+<h1>Topilmadi</h1>
+{% endif %}
+
+<br>
+<br>
+<a href="{% url 'home' %}"> Orqaga </a>
+</body>
+</html>

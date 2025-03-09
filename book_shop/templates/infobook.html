@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ book.title }} - Book Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .book-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            max-width: 800px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .book-image {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .book-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .book-info {
+            flex: 2;
+            padding: 20px;
+        }
+
+        .book-info h1 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .book-info p {
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .rating {
+            margin-bottom: 15px;
+        }
+
+        .star {
+            font-size: 1.2em;
+        }
+
+        .star.filled {
+            color: gold;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .author {
+            font-style: italic;
+        }
+
+        .genre {
+            font-style: italic;
+        }
+
+        .description {
+            line-height: 1.6;
+        }
+
+        .published {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="book-container">
+        <div class="book-image">
+            {% if book.image %}
+                <img src="{{ book.image.url }}" alt="{{ book.title }} Image">
+            {% endif %}
+        </div>
+        <div class="book-info">
+            <h1>{{ book.title }}</h1>
+            <p class="author">By {{ book.author }}</p>
+            <p class="genre">Genre: {{ book.genre }}</p>
+            <p class="description">{{ book.description }}</p>
+            <p class="published">Published: {{ book.published_date }}</p>
+            <div class="rating">
+                {% if book.stars == 5 %}
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        {% elif book.stars == 4 %}
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star">☆</span>
+                        {% elif book.stars == 3 %}
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star">☆</span>
+                        <span class="star">☆</span>
+                        {% elif book.stars == 2 %}
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star">☆</span>
+                        <span class="star">☆</span>
+                        <span class="star">☆</span>
+                        {% else %}
+                        <span class="star filled">★</span>
+                        <span class="star">☆</span>
+                        <span class="star">☆</span>
+                        <span class="star">☆</span>
+                        <span class="star">☆</span>
+                        {% endif %}
+
+            </div>
+            <p class="price">Price: {{ book.price }}</p>
+        </div>
+        <button>
+        <a href="{% url 'home' %}">Go back</a>
+        </button>
+        <button>
+        <a href="{% url 'editbook' book.id %}">Edit</a>
+        </button>
+        <button>
+        <a href="{% url 'deletebook' book.id %}">Delete</a>
+        </button>
+    </div>
+</body>
+</html>

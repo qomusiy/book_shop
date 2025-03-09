@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Shop - About</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #d2691e;
+            color: white;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+
+        main {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="">About</a>
+            <a href="{% url 'contact' %}">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>About Our Book Shop</h1>
+        <p>Welcome to our online book shop! We are passionate about providing a wide selection of books to our customers. Our mission is to make reading accessible and enjoyable for everyone.</p>
+        <p>We carefully curate our collection to include both classic and contemporary literature, as well as books from various genres and authors. We believe that books have the power to inspire, educate, and entertain, and we are committed to sharing that power with our community.</p>
+        <p>Thank you for choosing our book shop. We hope you find your next favorite read here!</p>
+    </main>
+</body>
+</html>
