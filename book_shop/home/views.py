@@ -3,6 +3,7 @@ from .models import Book
 from django.views.generic import View
 from django.db.models import Q
 from .forms import BookForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 class Home(View):
@@ -12,12 +13,14 @@ class Home(View):
         return render(r, template_name='home.html', context={'book':books})
 
 def about(r):
-    return render(r, template_name='about.html')
+    user = r.user   
+    return render(r, template_name='about.html', context={'user':user})
 
 def contact(r):
     return render(r, template_name='contact.html')
 
-class InfoBook(View):
+class InfoBook(LoginRequiredMixin, View):
+    login_url = 'login'
     def get(self, r, pk):
         return render(r, template_name='infobook.html', context={'book':get_object_or_404(Book, pk=pk)})
     
